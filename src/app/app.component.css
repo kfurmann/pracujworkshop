@@ -1,0 +1,39 @@
+.archived-games {
+    margin-top: 2rem;
+    color: #aaa;
+}
+
+.archived-games .game h3 {
+    flex: 0 0 100%;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.game {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+    width: 100%;
+}
+
+.solved {
+    color: #aaa;
+}
+
+.game-play {
+    padding: 1rem;
+    background: #6993aa;
+    border: 1px solid #2274aa;
+}
+
+.game-play > * {
+    display: block;
+}
+
+.player-list {
+    color: #2274aa;
+}
