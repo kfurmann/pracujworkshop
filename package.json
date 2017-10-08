@@ -2,6 +2,7 @@
   "name": "pracuj-workshop",
   "version": "0.0.0",
   "license": "MIT",
+  "main": "app.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -10,6 +11,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "postinstall": "ng build --prod",
   "private": true,
   "dependencies": {
     "@angular/animations": "^4.2.4",
@@ -23,6 +25,7 @@
     "@angular/router": "^4.2.4",
     "angular2-jwt": "^0.2.3",
     "core-js": "^2.4.1",
+    "express": "^4.16.1",
     "rxjs": "^5.4.2",
     "socket.io": "^2.0.3",
     "socket.io-client": "^2.0.3",
