@@ -9,6 +9,8 @@
 </form>
 
 <div class="main">
+  <app-seconds-left
+  [until]="game?.endsOn"></app-seconds-left>
   <div>
     <div class="question">
       <h1>{{game?.question}}</h1>
