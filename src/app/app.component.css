@@ -1,3 +1,30 @@
+.question {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 1rem;
+
+    background: #eaf4fd;
+}
+
+.question .question-content {
+    margin-right: 1rem;
+}
+
+.answer-form {
+    display: flex;
+    align-items: flex-start;
+}
+
+.answer-input {
+    font-size: 2em;
+    font-weight: 700;
+}
+
+.answer-submit {
+    height: 43px;
+}
+
 .archived-games {
     margin-top: 2rem;
     color: #aaa;

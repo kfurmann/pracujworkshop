@@ -3,18 +3,31 @@
   <input [(ngModel)]="password" name="password" required type="password"/>
   <button (click)="signIn($event)">Sign in</button>
 </form>
-<form *ngIf="playerRegistered">
-  <input [(ngModel)]="myAnswer" name="answer" required/>
-  <button (click)="answer($event)">Answer</button>
-</form>
 
-<div class="main">
-  <app-seconds-left
-  [until]="game?.endsOn"></app-seconds-left>
-  <div>
-    <div class="question">
+<div *ngIf="game">
+  <div class="question">
+    <div class="question-content">
       <h1>{{game?.question}}</h1>
     </div>
+    <form class="answer-form"
+          *ngIf="playerRegistered">
+      <input class="answer-input"
+             [(ngModel)]="myAnswer"
+             name="answer"
+             required/>
+      <button class="answer-submit"
+              (click)="answer($event)">Answer
+      </button>
+    </form>
+  </div>
+  <app-seconds-left
+          [until]="game?.endsOn"></app-seconds-left>
+</div>
+
+<div class="main">
+
+  <div>
+
     <div class="game" [class.solved]="game?.solved">
       <div class="game-play" *ngFor="let play of game?.plays">
         <label>{{play.playerId}}</label>

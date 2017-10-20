@@ -1,9 +1,11 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
-import 'rxjs/add/operator/take';
-import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/startWith';
+import 'rxjs/add/operator/take';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import { TimeHelper } from '../timeHelper';
 
 @Component({
   selector: 'app-seconds-left',
@@ -18,33 +20,34 @@ export class SecondsLeftComponent implements OnInit, OnChanges {
 
   private intervalSubscription: Subscription;
 
+
   constructor() {
+    //
   }
 
   ngOnInit() {
+    //
   }
 
   ngOnChanges(ch: SimpleChanges): void {
 
-    console.log(ch);
     if (ch['until'].currentValue) {
 
-      let left = Math.floor((ch['until'].currentValue.getTime() - (new Date()).getTime()) / 1000  );
-
-      console.log(left);
+      let left = TimeHelper.calculateSecondsUntil(ch['until'].currentValue);
 
       if (this.intervalSubscription) {
         this.intervalSubscription.unsubscribe();
       }
 
       this.intervalSubscription = Observable.interval(100)
-        .startWith(Math.round(left))
-        .take(Math.round(left * 10))
+        .startWith(Math.floor(left))
+        .take(Math.ceil(left * 10))
         .subscribe(() => {
-          left -= .1;
-          this.secondsLeft = Math.round(left);
+          left = TimeHelper.calculateSecondsUntil(ch['until'].currentValue);
+          this.secondsLeft = Math.floor(left);
         });
     }
   }
+
 
 }
