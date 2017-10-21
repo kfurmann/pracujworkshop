@@ -41,10 +41,10 @@ export class SecondsLeftComponent implements OnInit, OnChanges {
 
       this.intervalSubscription = Observable.interval(100)
         .startWith(Math.floor(left))
-        .take(Math.ceil(left * 10))
+        .take(Math.floor(left * 10))
         .subscribe(() => {
           left = TimeHelper.calculateSecondsUntil(ch['until'].currentValue);
-          this.secondsLeft = Math.floor(left);
+          this.secondsLeft = Math.max(0, Math.floor(left));
         });
     }
   }

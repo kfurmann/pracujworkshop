@@ -22,18 +22,14 @@
 </div>
 
 <div class="main">
-
   <div>
     <app-game [game]="apiService.game"
               *ngIf="apiService.game"></app-game>
 
     <div class="archived-games">
       <div class="game" *ngFor="let game of apiService.archivedGames">
+        <app-game [game]="game"></app-game>
         <h3>{{apiService.game.question}}</h3>
-        <div class="game-play" *ngFor="let play of game.plays">
-          <label>{{play.playerId}}</label>
-          <span>{{play.answer}}</span> <span>{{play.points}}</span>
-        </div>
       </div>
     </div>
   </div>

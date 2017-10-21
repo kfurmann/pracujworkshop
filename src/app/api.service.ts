@@ -33,7 +33,7 @@ export class ApiService {
       password: password
     })
       .do((response) => {
-        console.log(response);
+
         const body = response.json();
 
         this.token = body.token;

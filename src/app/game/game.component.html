@@ -4,6 +4,7 @@
     <div class="game-play" *ngFor="let play of game?.plays">
       <label>{{play.playerId}}</label>
       <span>{{play.answer}}</span>
+      <span *ngIf="play.points">{{play.points}}</span>
     </div>
   </div>
 </div>

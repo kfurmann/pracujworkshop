@@ -17,10 +17,9 @@ export class AppComponent {
   public signIn(credentials: { name, password }) {
 
     this.apiService.signIn(credentials.name, credentials.password)
-      .subscribe((response: any) => {
-        console.log('registered', response);
-        this.playerRegistered = true;
+      .subscribe(() => {
 
+        this.playerRegistered = true;
         this.apiService.connect();
       });
   }
