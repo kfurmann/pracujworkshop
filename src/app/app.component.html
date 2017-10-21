@@ -1,43 +1,35 @@
-<form *ngIf="!playerRegistered">
-  <input [(ngModel)]="player.name" name="name" required/>
-  <input [(ngModel)]="password" name="password" required type="password"/>
-  <button (click)="signIn($event)">Sign in</button>
-</form>
+<app-login-form *ngIf="!playerRegistered"
+                (onSignIn)="signIn($event)"></app-login-form>
 
-<div *ngIf="game">
+<div *ngIf="apiService.game">
   <div class="question">
     <div class="question-content">
-      <h1>{{game?.question}}</h1>
+      <h1>{{apiService.game?.question}}</h1>
     </div>
     <form class="answer-form"
           *ngIf="playerRegistered">
       <input class="answer-input"
-             [(ngModel)]="myAnswer"
+             [(ngModel)]="apiService.myAnswer"
              name="answer"
              required/>
       <button class="answer-submit"
-              (click)="answer($event)">Answer
+              (click)="apiService.answer($event)">Odpowiedz
       </button>
     </form>
   </div>
   <app-seconds-left
-          [until]="game?.endsOn"></app-seconds-left>
+          [until]="apiService.game?.endsOn"></app-seconds-left>
 </div>
 
 <div class="main">
 
   <div>
-
-    <div class="game" [class.solved]="game?.solved">
-      <div class="game-play" *ngFor="let play of game?.plays">
-        <label>{{play.playerId}}</label>
-        <span>{{play.answer}}</span>
-      </div>
-    </div>
+    <app-game [game]="apiService.game"
+              *ngIf="apiService.game"></app-game>
 
     <div class="archived-games">
-      <div class="game" *ngFor="let game of archivedGames">
-        <h3>{{game.question}}</h3>
+      <div class="game" *ngFor="let game of apiService.archivedGames">
+        <h3>{{apiService.game.question}}</h3>
         <div class="game-play" *ngFor="let play of game.plays">
           <label>{{play.playerId}}</label>
           <span>{{play.answer}}</span> <span>{{play.points}}</span>
@@ -47,7 +39,7 @@
   </div>
   <div class="player-list">
     <h3>Gracze:</h3>
-    <div *ngFor="let player of players">
+    <div *ngFor="let player of apiService.players">
       {{player.id}}
     </div>
   </div>

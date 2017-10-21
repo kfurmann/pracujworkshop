@@ -1,5 +1,6 @@
 .question {
     display: inline-flex;
+    flex-wrap: wrap;
     align-items: center;
 
     padding: 1rem;
@@ -22,7 +23,6 @@
 }
 
 .answer-submit {
-    height: 43px;
 }
 
 .archived-games {
@@ -40,26 +40,11 @@
     width: 100%;
 }
 
-.game {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 1rem;
-    width: 100%;
-}
 
 .solved {
     color: #aaa;
 }
 
-.game-play {
-    padding: 1rem;
-    background: #6993aa;
-    border: 1px solid #2274aa;
-}
-
-.game-play > * {
-    display: block;
-}
 
 .player-list {
     color: #2274aa;

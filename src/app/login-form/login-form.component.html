@@ -1,0 +1,5 @@
+<form (ngSubmit)="signIn(loginForm.value)" #loginForm="ngForm">
+  <input [(ngModel)]="player.name" name="name" required/>
+  <input [(ngModel)]="password" name="password" required type="password"/>
+  <button>Zacznij grę</button>
+</form>

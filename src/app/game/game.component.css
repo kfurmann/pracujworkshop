@@ -1,0 +1,22 @@
+.game {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 1rem;
+    width: 100%;
+    background: #E4F0FB;
+}
+
+.game-plays {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.game-play {
+    padding: 1rem;
+    margin: 1rem;
+    background: #CEE2F5;
+}
+
+.game-play > * {
+    display: block;
+}

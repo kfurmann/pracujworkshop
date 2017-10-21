@@ -1,0 +1,9 @@
+<div class="game" [class.solved]="game?.solved">
+  <label class="game-question">{{game?.question}}</label>
+  <div class="game-plays">
+    <div class="game-play" *ngFor="let play of game?.plays">
+      <label>{{play.playerId}}</label>
+      <span>{{play.answer}}</span>
+    </div>
+  </div>
+</div>
