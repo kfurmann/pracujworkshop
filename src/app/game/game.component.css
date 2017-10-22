@@ -4,6 +4,12 @@
     padding: 1rem;
     width: 100%;
     background: #E4F0FB;
+    margin-bottom: 1rem;
+}
+
+.game-question {
+    width: 200px;
+    border-right: solid 1px #ddd;
 }
 
 .game-plays {
@@ -19,4 +25,15 @@
 
 .game-play > * {
     display: block;
+}
+
+.game-answer {
+    font-weight: 700;
+}
+
+.game-points {
+    display: block;
+    width: 100%;
+    text-align: right;
+    margin-top: 5px;
 }

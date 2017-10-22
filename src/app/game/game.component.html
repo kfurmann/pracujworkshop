@@ -3,8 +3,9 @@
   <div class="game-plays">
     <div class="game-play" *ngFor="let play of game?.plays">
       <label>{{play.playerId}}</label>
-      <span>{{play.answer}}</span>
-      <span *ngIf="play.points">{{play.points}}</span>
+      <span class="game-answer">{{play.answer}}</span>
+      <span class="game-points"
+            *ngIf="game?.solved && play.points != null">{{play.points}} pkt.</span>
     </div>
   </div>
 </div>
