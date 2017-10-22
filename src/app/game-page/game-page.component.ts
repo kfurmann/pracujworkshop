@@ -12,7 +12,7 @@ export class GamePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('connect');
+
     this.apiService.connect();
   }
 

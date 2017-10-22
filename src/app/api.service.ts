@@ -3,6 +3,7 @@ import { Headers, Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { SocketMessageTypes } from '../interfaces/message';
 import { WebSocketService } from '../services/websocket.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ApiService {
@@ -25,9 +26,12 @@ export class ApiService {
   public playerRegistered = false;
 
   constructor(private http: Http,
-              private websocketService: WebSocketService) {
+              private websocketService: WebSocketService,
+              private router: Router) {
 
     this.token = localStorage.getItem('playerToken');
+
+
     this.playerRegistered = !!this.token;
   }
 
@@ -94,6 +98,16 @@ export class ApiService {
           this.game.plays = message.body.game.plays;
         }
       }
+    }, (error) => {
+      this.forceLogout();
     });
+  }
+
+  private forceLogout() {
+
+    localStorage.removeItem('playerToken');
+    this.playerRegistered = false;
+    delete this.token;
+    this.router.navigate(['']);
   }
 }

@@ -20,7 +20,8 @@ import { TimeModule } from './time/time.module';
 const appRoutes: Routes = [
   {path: 'rejestracja', component: LoginPageComponent},
   {path: 'gra', component: GamePageComponent, canActivate: [AuthGuardService]},
-  {path: '**', redirectTo: '/rejestracja'}
+  {path: '**', redirectTo: '/rejestracja'},
+  // {path: '*', redirectTo: '/rejestracja'}
 ];
 
 @NgModule({
@@ -38,9 +39,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     TimeModule,
-    RouterModule.forRoot(
-      appRoutes,
-      {enableTracing: true})
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     WebSocketService,

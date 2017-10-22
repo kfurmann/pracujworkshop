@@ -23,8 +23,6 @@ export class LoginPageComponent implements OnInit {
 
   public signIn(credentials: { name, password }) {
 
-    console.log('sign');
-
     this.apiService.signIn(credentials.name, credentials.password)
       .subscribe(() => {
 
