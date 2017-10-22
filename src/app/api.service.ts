@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
 @Injectable()
 export class ApiService {
 
-  private URL = 'http://localhost:3000/api';
-  private wsURL = 'ws://localhost:3000';
+  private URL = 'http://hidden-river-41453.herokuapp.com//api';
+  private wsURL = 'ws://hidden-river-41453.herokuapp.com';
   private secureHeaders = new Headers();
 
   public token = '';
