@@ -1,0 +1,53 @@
+.question {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    padding: 1rem;
+
+    background: #eaf4fd;
+}
+
+.question .question-content {
+    margin-right: 1rem;
+}
+
+.answer-form {
+    display: flex;
+    align-items: flex-start;
+}
+
+.answer-input {
+    font-size: 2em;
+    font-weight: 700;
+}
+
+.answer-submit {
+}
+
+.archived-games {
+    margin-top: 2rem;
+    color: #aaa;
+}
+
+.archived-games .game h3 {
+    flex: 0 0 100%;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    margin-top: 2rem;
+}
+
+
+.solved {
+    color: #aaa;
+}
+
+
+.player-list {
+    color: #2274aa;
+}

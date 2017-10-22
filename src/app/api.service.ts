@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Headers, Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { WebSocketService } from '../services/websocket.service';
 import { SocketMessageTypes } from '../interfaces/message';
+import { WebSocketService } from '../services/websocket.service';
 
 @Injectable()
 export class ApiService {
@@ -22,8 +22,13 @@ export class ApiService {
     name: ''
   };
 
+  public playerRegistered = false;
+
   constructor(private http: Http,
               private websocketService: WebSocketService) {
+
+    this.token = localStorage.getItem('playerToken');
+    this.playerRegistered = !!this.token;
   }
 
   public signIn(name, password): Observable<any> {
@@ -41,6 +46,8 @@ export class ApiService {
           name: name
         };
         this.secureHeaders.set('Authorization', 'Bearer ' + this.token);
+
+        localStorage.setItem('playerToken', this.token);
       });
   }
 
