@@ -18,7 +18,7 @@ export class LoginFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  private signIn(credentials: {name, password}) {
+  public signIn(credentials: {name, password}) {
 
     this.onSignIn.emit(credentials);
   }
