@@ -11,7 +11,6 @@ export class WebSocketService {
   }
 
   public connect(url: string, token: string = null): Observable<ISocketMessage> {
-    // return this.create(url, token);
 
     return this.createConnection(url, token);
   }

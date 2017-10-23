@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { SocketMessageTypes } from '../interfaces/message';
 import { WebSocketService } from '../services/websocket.service';
 import { Router } from '@angular/router';
+import { environment } from '../environments/environment';
+import 'rxjs/add/operator/publish';
+import * as jwt from 'jsonwebtoken';
 
 @Injectable()
 export class ApiService {
 
-  private URL = 'http://hidden-river-41453.herokuapp.com/api';
-  private wsURL = 'ws://hidden-river-41453.herokuapp.com';
+  private URL = 'http://' + environment.apiURL + '/api';
+  private wsURL = 'ws://' + environment.apiURL;
   private secureHeaders = new Headers();
 
   public token = '';
@@ -29,8 +32,10 @@ export class ApiService {
               private websocketService: WebSocketService,
               private router: Router) {
 
-    this.token = localStorage.getItem('playerToken');
+    if (localStorage.getItem('playerToken')) {
 
+      this.useToken(localStorage.getItem('playerToken'));
+    }
 
     this.playerRegistered = !!this.token;
   }
@@ -44,18 +49,27 @@ export class ApiService {
       .do((response) => {
 
         const body = response.json();
-
-        this.token = body.token;
         this.player = {
           name: name
         };
-        this.secureHeaders.set('Authorization', 'Bearer ' + this.token);
+        this.useToken(body.token);
 
         localStorage.setItem('playerToken', this.token);
       });
   }
 
+  public signOut(): void {
+
+    this.removeToken()
+      .subscribe(() => {
+
+        this.playerRegistered = false;
+        this.router.navigate(['/rejestracja']);
+      });
+  }
+
   public answer() {
+
     this.http.post(this.URL + '/game/play/answer', {
       playerId: this.player.name,
       answer: this.myAnswer
@@ -82,10 +96,6 @@ export class ApiService {
         this.players = message.body.players;
       } else if (message.type === SocketMessageTypes.GAME) {
 
-        if (this.game) {
-          this.archivedGames.unshift(this.game);
-        }
-
         this.game = message.body.game;
         this.game.endsOn = new Date(this.game.endsOn);
         this.myAnswer = '';
@@ -94,13 +104,45 @@ export class ApiService {
 
         if (this.game) {
 
+          this.archivedGames.unshift(this.game);
+
           this.game.solved = true;
           this.game.plays = message.body.game.plays;
         }
       }
     }, (error) => {
+      console.log(error);
       this.forceLogout();
     });
+  }
+
+  private useToken(token: string) {
+
+    this.token = token;
+    this.secureHeaders.set('Authorization', 'Bearer ' + token);
+    this.player.name = jwt.decode(token);
+  }
+
+  private removeToken(): Observable<Response> {
+
+    localStorage.removeItem('playerToken');
+
+    const obs = this.http.post(this.URL + '/player/logout',
+      {},
+      {
+        headers: this.secureHeaders
+      })
+      .publish();
+
+    obs.connect();
+
+    obs
+      .subscribe(() => {
+        delete this.token;
+        this.secureHeaders = new Headers();
+      });
+
+    return obs;
   }
 
   private forceLogout() {
@@ -110,4 +152,6 @@ export class ApiService {
     delete this.token;
     this.router.navigate(['']);
   }
+
+
 }

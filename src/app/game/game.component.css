@@ -37,3 +37,7 @@
     text-align: right;
     margin-top: 5px;
 }
+
+.solved {
+    color: #aaa;
+}

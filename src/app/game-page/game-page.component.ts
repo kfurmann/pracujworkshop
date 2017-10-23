@@ -16,4 +16,8 @@ export class GamePageComponent implements OnInit {
     this.apiService.connect();
   }
 
+  public signOut(): void {
+
+    this.apiService.signOut();
+  }
 }

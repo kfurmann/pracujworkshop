@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { ActivatedRouteSnapshot, RouterModule, RouterStateSnapshot, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { WebSocketService } from '../services/websocket.service';
 import { ApiService } from './api.service';
 

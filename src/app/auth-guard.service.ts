@@ -8,7 +8,7 @@ export class AuthGuardService implements CanActivate {
   constructor(private apiService: ApiService) {
   }
 
-  public canActivate() {
+  public canActivate(): boolean {
 
     return !!this.apiService.token;
   }

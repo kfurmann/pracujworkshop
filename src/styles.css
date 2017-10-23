@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-
 @import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&subset=latin-ext');
+
+body {
+    margin: 1rem;
+}
 
 body * {
     font-family: 'Lato', sans-serif !important;
@@ -11,11 +14,25 @@ button {
     padding: 0 1rem;
 
     border: none;
-    border-radius: 12px;
+    border-radius: 4px;
 
     background: #85AED2;
 
     font-weight: 400;
     color: white;
     font-size: 1.2rem;
+}
+
+input {
+    border-radius: 3px;
+    border: 1px solid #e3f1ff;
+}
+
+a {
+    text-decoration: none;
+    color: #2274aa;
+}
+
+a:hover {
+  color: #85AED2;
 }

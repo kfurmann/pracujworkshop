@@ -33,7 +33,7 @@ export class SecondsLeftComponent implements OnInit, OnChanges {
 
     if (ch['until'].currentValue) {
 
-      let left = TimeHelper.calculateSecondsUntil(ch['until'].currentValue);
+      let left = Math.max(0, TimeHelper.calculateSecondsUntil(ch['until'].currentValue))  ;
 
       if (this.intervalSubscription) {
         this.intervalSubscription.unsubscribe();

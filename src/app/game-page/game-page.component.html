@@ -1,39 +1,51 @@
-<div *ngIf="apiService.game">
-  <div class="question">
-    <div class="question-content">
-      <h1>{{apiService.game?.question}}</h1>
+<div
+        class="game-page-header"
+        *ngIf="apiService.game">
+  <div class="game-controls">
+    <div class="question">
+      <div class="question-content">
+        <h1>{{apiService.game?.question}}</h1>
+      </div>
+      <form class="answer-form"
+            *ngIf="apiService.playerRegistered"
+            autocomplete="off">
+        <input class="answer-input"
+               [(ngModel)]="apiService.myAnswer"
+               name="answer"
+               title="answer"
+               autocomplete="off"
+               required/>
+        <button class="answer-submit"
+                (click)="apiService.answer($event)">Odpowiedz
+        </button>
+      </form>
     </div>
-    <form class="answer-form"
-          *ngIf="apiService.playerRegistered">
-      <input class="answer-input"
-             [(ngModel)]="apiService.myAnswer"
-             name="answer"
-             required/>
-      <button class="answer-submit"
-              (click)="apiService.answer($event)">Odpowiedz
-      </button>
-    </form>
+    <app-seconds-left
+            [until]="apiService.game?.endsOn"></app-seconds-left>
   </div>
-  <app-seconds-left
-          [until]="apiService.game?.endsOn"></app-seconds-left>
+
+  <div class="game-page-header-right">
+    <div>
+      <a href="" (click)="signOut()">wyloguj -></a>
+    </div>
+    <div class="player-list">
+      <h3>Gracze:</h3>
+      <div *ngFor="let player of apiService.players">
+        {{player.id}} ({{player.points}} pkt.)
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="main" *ngIf="apiService.playerRegistered">
   <div>
     <app-game [game]="apiService.game"
               *ngIf="apiService.game"></app-game>
-
     <h3>Ukończone rundy:</h3>
     <div class="archived-games">
       <div class="game" *ngFor="let game of apiService.archivedGames">
         <app-game [game]="game"></app-game>
       </div>
-    </div>
-  </div>
-  <div class="player-list">
-    <h3>Gracze:</h3>
-    <div *ngFor="let player of apiService.players">
-      {{player.id}} {{player.points}}
     </div>
   </div>
 </div>

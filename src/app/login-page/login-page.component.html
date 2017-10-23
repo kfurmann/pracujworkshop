@@ -1,2 +1,7 @@
-<app-login-form *ngIf="!apiService.playerRegistered"
-                (onSignIn)="signIn($event)"></app-login-form>
+<div>
+  <h1>Państwa - miasta</h1>
+  <app-login-form
+          class="login-component"
+          *ngIf="!apiService.playerRegistered"
+          (onSignIn)="signIn($event)"></app-login-form>
+</div>

@@ -1,0 +1,7 @@
+.login-form {
+}
+
+.login-form > * {
+    text-align: center;
+    margin-bottom: 1rem;
+}
