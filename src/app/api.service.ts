@@ -71,7 +71,6 @@ export class ApiService {
   public answer() {
 
     this.http.post(this.URL + '/game/play/answer', {
-      playerId: this.player.name,
       answer: this.myAnswer
     }, {
       headers: this.secureHeaders
