@@ -9,6 +9,8 @@ import { ApiService } from '../api.service';
 })
 export class LoginPageComponent implements OnInit {
 
+  public gameTitle = 'Państwa - miasta';
+
   constructor(public apiService: ApiService, private router: Router) {
     //
   }
