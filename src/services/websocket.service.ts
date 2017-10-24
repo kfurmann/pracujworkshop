@@ -17,6 +17,7 @@ export class WebSocketService {
 
   private createConnection(url: string, token: string): Observable<ISocketMessage> {
 
+    console.log(url);
     const socket = ioClient.connect(url, {
       query: 'token=' + token
     });

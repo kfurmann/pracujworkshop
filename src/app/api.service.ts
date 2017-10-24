@@ -150,7 +150,7 @@ export class ApiService {
     localStorage.removeItem('playerToken');
     this.playerRegistered = false;
     delete this.token;
-    this.router.navigate(['']);
+    this.router.navigate(['/rejestracja']);
   }
 
 
